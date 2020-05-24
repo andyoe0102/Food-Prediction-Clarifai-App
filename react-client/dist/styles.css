@@ -1,0 +1,29 @@
+.header{
+  margin:2rem;
+  font-size:2rem;
+  color:red;
+  text-align: center;
+}
+
+.sidebar{
+  overflow:scroll
+}
+
+.app{
+  height:100vh;
+  width:100vw;
+}
+
+body{
+  background-color: beige;
+}
+
+.search{
+  margin:2rem;
+}
+
+.search-bar{
+  width:60%;
+  text-align: center;
+  margin:auto;
+}
