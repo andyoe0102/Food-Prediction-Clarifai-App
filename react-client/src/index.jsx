@@ -11,31 +11,51 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentURL:'',
-      currentName:'',
+      currentURL:'https://images.all-free-download.com/images/graphiclarge/food_picture_04_hd_pictures_167555.jpg',
+      currentName:'pasta',
       items: []
     }
   }
 
-  componentDidMount() {
+  // componentDidMount() {
+  //   $.ajax({
+  //     url: '/items',
+  //     success: (data) => {
+  //       this.setState({
+  //         items: data
+  //       })
+  //     },
+  //     error: (err) => {
+  //       console.log('err', err);
+  //     }
+  //   });
+  // }
+
+  submitSearch(e){
+    e.preventDefault();
+    console.log('clicked')
     $.ajax({
-      url: '/items',
-      success: (data) => {
-        this.setState({
-          items: data
-        })
+      url:'/food',
+      method:'POST',
+      contentType:'application/json',
+      data: JSON.stringify({
+        name:this.state.currentName,
+        url:this.state.currentURL
+      }),
+      success: (res) =>{
+        console.log(res);
       },
-      error: (err) => {
-        console.log('err', err);
+      error:(err) =>{
+        console.log('err',err)
       }
-    });
+    })
   }
 
   render () {
     return (
     <div className="app">
       <Header/>
-      <Search/>
+      <Search search={this.submitSearch.bind(this)}/>
       <div className="row m-5 content">
         <div className="col-md-8 container">
           <Image image = {this.state.currentURL}/>

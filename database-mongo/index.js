@@ -13,7 +13,8 @@ db.once('open', function() {
 
 var foodSchema = mongoose.Schema({
   url:String,
-  ingredients:String
+  ingredients:String,
+  name:String
 
 });
 

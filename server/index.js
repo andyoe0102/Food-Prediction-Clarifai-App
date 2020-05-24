@@ -12,7 +12,7 @@ const clarifaiApp = new Clarifai.App({apiKey:'1cf7e0331d5c4d878921f7b48bc2c6e9'}
 //   var recipe = data.map(ingredient =>{
 //     return ingredient.name
 //   }).join(',')
-//   console.log(recipe)
+//   return recipe;
 // }).catch(err =>{
 //   console.log(err)
 // })
@@ -22,7 +22,9 @@ var app = express();
 app.use(express.static(__dirname + '/../react-client/dist'));
 app.use(bodyParser.json());
 
-app.get('/items', function (req, res) {
+app.post('/food', function (req, res) {
+  var {name, url} = req.body
+  console.log(name,url)
   // items.selectAll(function(err, data) {
   //   if(err) {
   //     res.sendStatus(500);
@@ -30,7 +32,7 @@ app.get('/items', function (req, res) {
   //     res.json(data);
   //   }
   // });
-  res.send('dd')
+  res.send('successfuly saved')
 });
 
 app.listen(3000, function() {
