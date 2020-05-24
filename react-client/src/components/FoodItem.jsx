@@ -3,7 +3,8 @@ import React from 'react';
 
 const FoodItem = (props) => (
   <div className='FoodItem'>
-    Food Ingredients Prediction
+    <img className = "fooditem-image" src = "https://images.all-free-download.com/images/graphiclarge/food_picture_04_hd_pictures_167555.jpg"/>
+    <h1>pasta</h1>
   </div>
 )
 

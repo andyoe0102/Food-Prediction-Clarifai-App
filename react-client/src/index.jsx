@@ -37,11 +37,11 @@ class App extends React.Component {
       <Header/>
       <Search/>
       <div className="row m-5 content">
-        <div className="col-md-8">
+        <div className="col-md-8 container">
           <Image image = {this.state.currentURL}/>
           <Ingredients/>
         </div>
-        <div className = "col-md-4">
+        <div className = "col-md-4 aside">
           <FoodList/>
         </div>
       </div>
