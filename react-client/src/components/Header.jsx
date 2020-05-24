@@ -3,7 +3,7 @@ import React from 'react';
 
 const Header = (props) => (
   <div className='header'>
-    Food Recipe Prediction
+    Food Ingredients Prediction
   </div>
 )
 
