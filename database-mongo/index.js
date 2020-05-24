@@ -11,12 +11,13 @@ db.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
-var itemSchema = mongoose.Schema({
-  quantity: Number,
-  description: String
+var foodSchema = mongoose.Schema({
+  url:String,
+  ingredients:String
+
 });
 
-var Item = mongoose.model('Item', itemSchema);
+var Food = mongoose.model('Food', foodSchema);
 
 var selectAll = function(callback) {
   Item.find({}, function(err, items) {
