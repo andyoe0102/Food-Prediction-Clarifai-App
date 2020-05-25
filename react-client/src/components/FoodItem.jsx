@@ -1,11 +1,15 @@
 import React from 'react';
 
+const FoodItem = (props) =>{
+  console.log(props.food,'fooditem');
 
-const FoodItem = (props) => (
-  <div className='FoodItem'>
-    <img className = "fooditem-image" src = "https://images.all-free-download.com/images/graphiclarge/food_picture_04_hd_pictures_167555.jpg"/>
-    <h1 className="fooditem-name">pasta</h1>
-  </div>
-)
+  return(
+    <div className='FoodItem'>
+      <img className = "fooditem-image" src = {props.food.url}/>
+      <h1 className="fooditem-name">{props.food.name}</h1>
+    </div>
+  )
+
+}
 
 export default FoodItem;

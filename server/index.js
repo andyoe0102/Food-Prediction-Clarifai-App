@@ -2,20 +2,10 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var items = require('../database-mongo');
 const Clarifai = require('clarifai');
+const {apikey} = require('./config.json')
+const clarifaiApp = new Clarifai.App({apiKey:apikey});
+let {save,find} = require('../database-mongo')
 
-
-const clarifaiApp = new Clarifai.App({apiKey:'1cf7e0331d5c4d878921f7b48bc2c6e9'});
-
-// clarifaiApp.models.predict("bd367be194cf45149e75f01d59f77ba7",'https://images.all-free-download.com/images/graphiclarge/food_picture_04_hd_pictures_167555.jpg')
-// .then(res =>{
-//   var data = res.outputs[0].data.concepts;
-//   var recipe = data.map(ingredient =>{
-//     return ingredient.name
-//   }).join(',')
-//   return recipe;
-// }).catch(err =>{
-//   console.log(err)
-// })
 
 var app = express();
 
@@ -24,16 +14,45 @@ app.use(bodyParser.json());
 
 app.post('/food', function (req, res) {
   var {name, url} = req.body
-  console.log(name,url)
-  // items.selectAll(function(err, data) {
-  //   if(err) {
-  //     res.sendStatus(500);
-  //   } else {
-  //     res.json(data);
-  //   }
-  // });
-  res.send('successfuly saved')
+
+  clarifaiApp.models.predict("bd367be194cf45149e75f01d59f77ba7",url)
+    .then(obj =>{
+      var data = obj.outputs[0].data.concepts;
+      var ingredients = data.map(ingredient =>{
+        return ingredient.name
+        }).join(',')
+      var food = {
+        name:name,
+        url: url,
+        ingredients: ingredients
+      };
+
+      console.log(food);
+
+      save(food,(err,response)=>{
+        if(err){
+          console.log('error saving data')
+        }else{
+          res.status(200).send('successfuly saved')
+        }
+      })
+
+    }).catch(err =>{
+      console.log(err)
+    })
 });
+
+app.get('/food',(req,res) =>{
+  console.log('get');
+  find((err,foods) =>{
+    if(err){
+      console.log(err);
+    }else{
+      console.log(foods);
+      res.send(foods);
+    }
+  })
+})
 
 app.listen(3000, function() {
   console.log('listening on port 3000!');

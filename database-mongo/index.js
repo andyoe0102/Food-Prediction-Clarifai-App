@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/food');
 
 var db = mongoose.connection;
 
@@ -12,7 +12,10 @@ db.once('open', function() {
 });
 
 var foodSchema = mongoose.Schema({
-  url:String,
+  url:{
+    type:String,
+    unique:true
+  },
   ingredients:String,
   name:String
 
@@ -20,14 +23,13 @@ var foodSchema = mongoose.Schema({
 
 var Food = mongoose.model('Food', foodSchema);
 
-var selectAll = function(callback) {
-  Item.find({}, function(err, items) {
-    if(err) {
-      callback(err, null);
-    } else {
-      callback(null, items);
-    }
-  });
-};
+let save =(food,callback)=>{
+  Food.create(food,callback);
+}
 
-module.exports.selectAll = selectAll;
+let find = (callback) =>{
+  Food.find().sort({name:1}).exec(callback);
+}
+
+module.exports.save = save;
+module.exports.find = find;

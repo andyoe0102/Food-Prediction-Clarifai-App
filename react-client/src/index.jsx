@@ -11,25 +11,27 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentURL:'https://images.all-free-download.com/images/graphiclarge/food_picture_04_hd_pictures_167555.jpg',
-      currentName:'pasta',
+      currentURL:'https://images.all-free-download.com/images/graphiclarge/food_picture_02_hd_pictures_167520.jpg',
+      currentName:'sandwich',
       items: []
     }
   }
 
-  // componentDidMount() {
-  //   $.ajax({
-  //     url: '/items',
-  //     success: (data) => {
-  //       this.setState({
-  //         items: data
-  //       })
-  //     },
-  //     error: (err) => {
-  //       console.log('err', err);
-  //     }
-  //   });
-  // }
+  componentDidMount() {
+    $.ajax({
+      url: '/food',
+      method:'GET',
+      contentType:'applicatoin/json',
+      success: (data) => {
+        this.setState({
+          items: data
+        })
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    });
+  }
 
   submitSearch(e){
     e.preventDefault();
@@ -62,7 +64,7 @@ class App extends React.Component {
           <Ingredients/>
         </div>
         <div className = "col-md-4 aside">
-          <FoodList/>
+          <FoodList foodLists ={this.state.items}/>
         </div>
       </div>
     </div>)
