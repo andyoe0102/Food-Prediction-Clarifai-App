@@ -1,10 +1,17 @@
 import React from 'react';
 
 
-const Image = (props) => (
-  <div className='image'>
-    <img className="food-image" src = {props.image}/>
-  </div>
-)
+const Image = (props) => {
+  if(!props.image){
+    return null
+  }else{
+    return (
+      <div className='image'>
+        <img className="food-image" src = {props.image}/>
+      </div>
+    )
+  }
+}
+
 
 export default Image;
