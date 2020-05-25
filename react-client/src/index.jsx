@@ -18,6 +18,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.getFoodata();
+  }
+
+  getFoodata(){
     $.ajax({
       url: '/food',
       method:'GET',
