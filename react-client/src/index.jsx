@@ -11,10 +11,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentURL:'https://images.all-free-download.com/images/graphiclarge/delicious_fruit_03_hd_pictures_166657.jpg',
-      currentName:'orange',
+      currentURL:'',
       currentIngredients:'',
-      items: []
+      items: [],
+      searchName:'',
+      searchURL:''
     }
   }
 
@@ -40,30 +41,30 @@ class App extends React.Component {
 
   submitSearch(e){
     e.preventDefault();
-    console.log('clicked')
-    $.ajax({
-      url:'/food',
-      method:'POST',
-      contentType:'application/json',
-      data: JSON.stringify({
-        name:this.state.currentName,
-        url:this.state.currentURL
-      }),
-      success: (res) =>{
-        console.log(res);
-        this.getFoodata();
-      },
-      error:(err) =>{
-        console.log('err',err)
-      }
-    })
+    console.log('clicked');
+    console.log(e.target.value);
+    // $.ajax({
+    //   url:'/food',
+    //   method:'POST',
+    //   contentType:'application/json',
+    //   data: JSON.stringify({
+    //     name:this.state.searchName,
+    //     url:this.state.searchURL
+    //   }),
+    //   success: (res) =>{
+    //     this.getFoodata();
+    //   },
+    //   error:(err) =>{
+    //     console.log('err',err)
+    //   }
+    // })
   }
 
   changeData(data){
     this.setState({
       currentURL:data.url,
       currentName:data.name,
-      currentIngredients:data.Ingredients
+      currentIngredients:data.ingredients
 
     })
   }
@@ -76,7 +77,7 @@ class App extends React.Component {
       <div className="row m-5 content">
         <div className="col-md-8 container">
           <Image image = {this.state.currentURL}/>
-          <Ingredients/>
+          <Ingredients ingredients={this.state.currentIngredients}/>
         </div>
         <div className = "col-md-4 aside">
           <FoodList foodLists ={this.state.items} changeData = {this.changeData.bind(this)}/>

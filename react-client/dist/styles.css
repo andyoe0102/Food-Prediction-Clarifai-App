@@ -83,8 +83,21 @@ body{
   margin-right:1rem;
 }
 
-.fooditem-name{
+.fooditem-info{
   width:70%;
   text-align: center;
-  justify-content: center;
+  padding:0;
+  margin:0;
 }
+
+.fooditem-name{
+  font-size:2rem;
+}
+
+.fooditem-ingredients{
+  padding-right:1rem;
+  word-wrap: break-word;
+  font-size:12px;
+
+}
+
