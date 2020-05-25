@@ -11,8 +11,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentURL:'https://images.all-free-download.com/images/graphiclarge/food_picture_02_hd_pictures_167520.jpg',
-      currentName:'sandwich',
+      currentURL:'https://images.all-free-download.com/images/graphiclarge/delicious_fruit_03_hd_pictures_166657.jpg',
+      currentName:'orange',
+      currentIngredients:'',
       items: []
     }
   }
@@ -50,10 +51,20 @@ class App extends React.Component {
       }),
       success: (res) =>{
         console.log(res);
+        this.getFoodata();
       },
       error:(err) =>{
         console.log('err',err)
       }
+    })
+  }
+
+  changeData(data){
+    this.setState({
+      currentURL:data.url,
+      currentName:data.name,
+      currentIngredients:data.Ingredients
+
     })
   }
 
@@ -68,7 +79,7 @@ class App extends React.Component {
           <Ingredients/>
         </div>
         <div className = "col-md-4 aside">
-          <FoodList foodLists ={this.state.items}/>
+          <FoodList foodLists ={this.state.items} changeData = {this.changeData.bind(this)}/>
         </div>
       </div>
     </div>)

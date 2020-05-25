@@ -9,7 +9,7 @@ const FoodList =(props)=>{
     return(
       <div className="food-list">
         {props.foodLists.map((food,idx)=>{
-          return <FoodItem food={food} key={idx}/>
+          return <FoodItem food={food} key={idx} changeData={props.changeData}/>
         })}
       </div>
     )

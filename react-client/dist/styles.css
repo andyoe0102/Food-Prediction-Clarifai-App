@@ -35,6 +35,7 @@ body{
   background: white;
   margin-bottom:3rem;
   height: 100%;
+  overflow: scroll;
 }
 
 .image{
@@ -73,6 +74,7 @@ body{
   border-color: black;
   border-style: solid;
   margin-bottom: 0.5rem;
+  cursor: pointer;
 }
 
 .fooditem-image{
