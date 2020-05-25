@@ -13,9 +13,7 @@ class App extends React.Component {
     this.state = {
       currentURL:'',
       currentIngredients:'',
-      items: [],
-      searchName:'',
-      searchURL:''
+      items: []
     }
   }
 
@@ -39,25 +37,28 @@ class App extends React.Component {
     });
   }
 
-  submitSearch(e){
-    e.preventDefault();
-    console.log('clicked');
-    console.log(e.target.value);
-    // $.ajax({
-    //   url:'/food',
-    //   method:'POST',
-    //   contentType:'application/json',
-    //   data: JSON.stringify({
-    //     name:this.state.searchName,
-    //     url:this.state.searchURL
-    //   }),
-    //   success: (res) =>{
-    //     this.getFoodata();
-    //   },
-    //   error:(err) =>{
-    //     console.log('err',err)
-    //   }
-    // })
+  submitSearch(data){
+    var {name,url} = data;
+    $.ajax({
+      url:'/food',
+      method:'POST',
+      contentType:'application/json',
+      data: JSON.stringify({
+        name:name,
+        url:url
+      }),
+      success: (res) =>{
+        console.log('success!')
+        this.setState({
+          currentURL:res.url,
+          currentIngredients:res.ingredients
+        })
+        this.getFoodata();
+      },
+      error:(err) =>{
+        console.log('err',err)
+      }
+    })
   }
 
   changeData(data){

@@ -2,7 +2,29 @@ import React from 'react';
 
 class Search extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
+
+        this.state ={
+            foodname:'',
+            foodurl:'',
+        }
+    }
+
+    handleChange(e) {
+        this.setState({
+            [e.target.name]:e.target.value
+        })
+    }
+
+    onSubmit(e){
+        e.preventDefault();
+        console.log(this.props.search);
+        this.props.search({name: this.state.foodname, url:this.state.foodurl})
+
+        this.setState({
+            foodname:'',
+            foodurl:''
+        })
     }
 
     render() {
@@ -17,7 +39,9 @@ class Search extends React.Component {
                                     <div className="input-group-prepend">
                                         <div className="input-group-text">Food Name</div>
                                     </div>
-                                    <input type="text" name="foodname" className="form-control" id="inlineFormInputGroupUsername" />
+                                    <input type="text" name="foodname" className="form-control" id="inlineFormInputGroupUsername"
+                                    value = {this.state.foodname}
+                                    onChange={e => this.handleChange(e)}/>
                                 </div>
                             </div>
 
@@ -27,12 +51,14 @@ class Search extends React.Component {
                                     <div className="input-group-prepend">
                                         <div className="input-group-text">URL</div>
                                     </div>
-                                    <input type="text" name="foodurl" className="form-control" id="inlineFormInputGroupUsername" />
+                                    <input type="text" name="foodurl" className="form-control" id="inlineFormInputGroupUsername"
+                                    value = {this.state.foodurl}
+                                    onChange={e => this.handleChange(e)}/>
                                 </div>
                             </div>
 
                             <div className="col-auto">
-                                <button type="submit" className="btn btn-primary" onClick={(e) => { props.search(e) }}>Submit</button>
+                                <button type="submit" className="btn btn-primary" onClick={(e) => { this.onSubmit(e) }}>Submit</button>
                             </div>
                         </div>
                     </form>

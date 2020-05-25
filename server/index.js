@@ -27,13 +27,11 @@ app.post('/food', function (req, res) {
         ingredients: ingredients
       };
 
-      console.log(food);
-
       save(food,(err,response)=>{
         if(err){
           console.log('error saving data')
         }else{
-          res.status(200).send('successfuly saved')
+          res.status(200).send(food)
         }
       })
 
@@ -48,7 +46,6 @@ app.get('/food',(req,res) =>{
     if(err){
       console.log(err);
     }else{
-      console.log(foods);
       res.send(foods);
     }
   })
