@@ -10,7 +10,7 @@ const Ingredients = (props) => {
   <div className='ingredients'>
     <h1 className="food-heading">Predicted Ingredients</h1>
 
-  <div className="prediction"><p>{props.ingredients}</p></div>
+    <div className="prediction"><p>{props.ingredients}</p></div>
   </div>
 )}
 

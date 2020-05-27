@@ -1,5 +1,8 @@
 html,body{
-  height:100%
+  padding:0px;
+  margin: 0px;
+  height:100vh;
+  width:100vw;
 }
 
 .header{
@@ -31,6 +34,9 @@ body{
   height:100vh;
 }
 
+.aside{
+  height:100%;
+}
 .food-list{
   background: white;
   margin-bottom:3rem;
@@ -39,11 +45,12 @@ body{
 }
 
 .image{
-  margin-bottom:3rem;
+  margin-bottom:1rem;
+  height:60%;
 }
 
 .food-image{
-  height:60%;
+  height:100%;
   width:100%;
   object-fit: fill;
 }
@@ -52,7 +59,7 @@ body{
   height:40%;
   background: white;
   font-size:2rem;
-  margin-bottom:3rem;
+  text-align: center;
 }
 
 .food-heading{
