@@ -17,7 +17,11 @@ var foodSchema = mongoose.Schema({
     unique:true
   },
   ingredients:String,
-  name:String
+  name:String,
+  date:{
+    type:Date,
+    default: Date.now
+  }
 
 });
 
@@ -28,7 +32,7 @@ let save =(food,callback)=>{
 }
 
 let find = (callback) =>{
-  Food.find().sort({name:1}).exec(callback);
+  Food.find().sort({date:-1}).exec(callback);
 }
 
 module.exports.save = save;

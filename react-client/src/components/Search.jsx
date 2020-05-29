@@ -18,7 +18,6 @@ class Search extends React.Component {
 
     onSubmit(e){
         e.preventDefault();
-        console.log(this.props.search);
         this.props.search({name: this.state.foodname, url:this.state.foodurl})
 
         this.setState({
