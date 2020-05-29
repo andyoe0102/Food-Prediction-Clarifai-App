@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var items = require('../database-mongo');
 const Clarifai = require('clarifai');
-const {apikey} = require('./config.json')
+const {apikey} = require('./config.js')
 const clarifaiApp = new Clarifai.App({apiKey:apikey});
 let {save,find} = require('../database-mongo')
 
