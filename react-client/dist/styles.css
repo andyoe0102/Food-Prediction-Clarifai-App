@@ -30,6 +30,10 @@ body{
   margin:auto;
 }
 
+.container {
+  height:100%
+}
+
 .content{
   height:100vh;
 }
@@ -98,7 +102,8 @@ body{
 }
 
 .fooditem-name{
-  font-size:2rem;
+  font-size:1rem;
+  font-weight: bold;
 }
 
 .fooditem-ingredients{

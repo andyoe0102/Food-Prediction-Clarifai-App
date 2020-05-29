@@ -2,12 +2,14 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var items = require('../database-mongo');
 const Clarifai = require('clarifai');
-const {apikey} = require('./config.js')
+const apikey = require('config').get('apikey')
 const clarifaiApp = new Clarifai.App({apiKey:apikey});
 let {save,find} = require('../database-mongo')
 
 
 var app = express();
+
+console.log(apikey)
 
 app.use(express.static(__dirname + '/../react-client/dist'));
 app.use(bodyParser.json());
