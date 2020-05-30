@@ -6,6 +6,7 @@ import Header from './components/Header.jsx';
 import FoodList from './components/FoodList.jsx';
 import Image from './components/Image.jsx';
 import Ingredients from './components/Ingredients.jsx';
+// import Loader from './components/Loader.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class App extends React.Component {
     this.state = {
       currentURL:'',
       currentIngredients:'',
-      items: []
+      items: [],
+      active:true
     }
   }
 
@@ -77,6 +79,10 @@ class App extends React.Component {
       <Search search={this.submitSearch.bind(this)}/>
       <div className="row m-5 content">
         <div className="col-md-8 container">
+          {/* <Loader active={this.state.active}>
+            <Image image = {this.state.currentURL}/>
+            <Ingredients ingredients={this.state.currentIngredients}/>
+          </Loader> */}
           <Image image = {this.state.currentURL}/>
           <Ingredients ingredients={this.state.currentIngredients}/>
         </div>
